@@ -4,24 +4,21 @@
 <ion-content [fullscreen]="true">
   <div class="home-background">
 
-    <div class="logo-section">
-      <div class="logo-wrapper">
-        <img src="assets/icon/logo-app.svg" alt="Logo Vaga TA" class="logo-img">
+    <div class="botijao-card">
+      <div class="botijao-box">
+        <div class="botijao-img"></div>
+        <div class="botijao-mask">
+          <div class="liquido" id="liquido"></div>
+        </div>
       </div>
-      <h1 class="home-title">Gas Tracker</h1>
+
+      <div class="botijao-nivel">
+        <span class="botijao-nivel__valor">{{porcentagem}}%</span>
+        <span class="botijao-nivel__label">restantes</span>
+      </div>
     </div>
 
-    <div class="fp-card">
-      <h2 class="fp-title">Botijão</h2>
-      <div class="fp-wrapper">
-        <img src="assets/cilindro-de-gas.svg" alt="Cilindro de Gás" class="fp-img">
-      </div>
-      <h2 class="fp-value">n% restantes</h2>
-    </div>
-
-    <div class="infos">
-      <h2 class="info-medicao"> Última leitura há n minutos </h2>
-    </div>
+    <h2 class="info-medicao">Última leitura há {{minutosUltimaLeitura}} minutos</h2>
 
   </div>
 </ion-content>

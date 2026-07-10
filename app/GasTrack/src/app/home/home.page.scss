@@ -3,136 +3,111 @@
 :host {
   display: block;
   height: 100%;
+
+  // cor do desenho do botijão (a parte "vazia"). Cinza neutro pra não
+  // brigar com a cor do líquido. O --cor-liquido é controlado pelo TS.
+  --cor-botijao: #9aa1b8;
 }
 
 ion-content {
   --background: transparent;
 }
 
-
+// fundo azul, tudo centralizado
 .home-background {
-  background: linear-gradient(160deg, #0f0f45 0%, #1a1a6e 50%, #0d0d3a 100%);
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2vh 4vw 4vh;
+  justify-content: center;
   gap: 2vh;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70vmin;
-    height: 70vmin;
-    background: radial-gradient(circle, rgba(100, 120, 255, 0.18) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-  }
+  padding: 2.5vh 4vw;
+  background: linear-gradient(160deg, #0f0f45 0%, #1a1a6e 50%, #0d0d3a 100%);
 }
 
-.logo-section {
+// cartão claro: ocupa quase toda a tela (min-height segura a altura)
+.botijao-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5vmin;
-  animation: fadeIn 0.6s ease-out both;
-  margin-top: -6vh;
-}
-
-.logo-wrapper {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: clamp(4rem, 15vmin, 8rem);
-  height: clamp(4rem, 15vmin, 8rem);
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.14);
-  box-shadow:
-    0 0 60px rgba(100, 120, 255, 0.35),
-    inset 0 0 30px rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  animation: pulse 3s ease-in-out infinite;
-}
-
-.logo-img {
-  width: clamp(2.5rem, 11vmin, 6rem);
-  height: clamp(2.5rem, 11vmin, 6rem);
-  object-fit: contain;
-  filter: drop-shadow(0 0 16px rgba(180, 190, 255, 0.6));
-}
-
-.home-title {
-  color: #ffffff;
-  font-size: clamp(1rem, 5vmin, 2.5rem);
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  margin: 0;
-  text-shadow: 0 0 32px rgba(150, 165, 255, 0.7);
-  text-align: center;
-}
-
-.fp-card {
+  gap: 2vh;
   width: 100%;
-  flex: 1;
-  max-height: 48vh;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(100, 120, 255, 0.35);
-  border-radius: 1.5rem;
-  padding: 1.5vh 3vw;
-  box-shadow:
-    0 0 40px rgba(100, 120, 255, 0.2),
-    inset 0 0 20px rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
+  max-width: 48rem;
+  min-height: 56vh;
+  padding: 3.5vh 5vw;
+  background: #f5f7fb;
+  border-radius: 2rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+// caixa em pé (acompanha o formato do cilindro) — botijão grande
+.botijao-box {
+  position: relative;
+  height: min(56vh, 32rem);
+  aspect-ratio: 0.7 / 1;
+}
+
+// desenho do botijão: SVG recolorido via máscara (não precisa editar o arquivo).
+// mask-size "auto 100%" preenche a altura toda e corta o vazio das laterais.
+.botijao-img {
+  position: absolute;
+  inset: 0;
+  background-color: var(--cor-botijao);
+  -webkit-mask: url('/assets/cilindro-de-gas.svg') center / auto 100% no-repeat;
+          mask: url('/assets/cilindro-de-gas.svg') center / auto 100% no-repeat;
+}
+
+// camada do líquido, recortada no mesmo formato do botijão
+.botijao-mask {
+  position: absolute;
+  inset: 0;
+  -webkit-mask: url('/assets/cilindro-de-gas.svg') center / auto 100% no-repeat;
+          mask: url('/assets/cilindro-de-gas.svg') center / auto 100% no-repeat;
+}
+
+// o líquido em si: colado no fundo, cresce em altura (0% -> 100%)
+.liquido {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--cor-liquido, #22c55e);
+  transition: height 0.4s ease;
+}
+
+// nível em destaque: a % é a estrela da tela
+.botijao-nivel {
   display: flex;
   flex-direction: column;
-  gap: 1.5vh;
-  animation: fadeInUp 0.7s ease-out 0.2s both;
-}
-
-.fp-title {
-  color: rgba(200, 210, 255, 0.9);
-  font-family: 'Nunito', sans-serif;
-  font-size: clamp(0.85rem, 3vmin, 1.5rem);
-  font-weight: 600;
-  margin: 0;
-  flex-shrink: 0;
-  text-shadow: 0 0 16px rgba(150, 165, 255, 0.5);
-  text-align: center;
-}
-
-.fp-value {
-  color: rgba(200, 210, 255, 0.9);
-  font-family: 'Nunito', sans-serif;
-  font-size: clamp(0.85rem, 3vmin, 1.5rem);
-  font-weight: 600;
-  margin: 0;
-  flex-shrink: 0;
-  text-shadow: 0 0 16px rgba(150, 165, 255, 0.5);
-  text-align: center;
-}
-
-.infos{
-  color: rgba(200, 210, 255, 0.9);
-  font-family: 'Nunito', sans-serif;
-  font-size: clamp(0.85rem, 3vmin, 1.2rem);
-  font-weight: 400;
-  margin: 0;
-  text-shadow: 0 0 16px rgba(150, 165, 255, 0.5);
-}
-
-.info-medicao{
-  margin: 0;
-  text-align: center;
-}
-
-.fp-wrapper {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  line-height: 1;
+  color: #1a1a4e;
+  font-family: 'Nunito', sans-serif;
+}
+
+.botijao-nivel__valor {
+  font-size: clamp(4rem, 24vmin, 8rem);
+  font-weight: 700;
+}
+
+.botijao-nivel__label {
+  margin-top: 0.6rem;
+  font-size: clamp(1rem, 4.2vmin, 1.5rem);
+  font-weight: 400;
+  color: rgba(26, 26, 78, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+// tempo da última leitura, sobre o fundo azul
+.info-medicao {
+  margin: 0;
+  text-align: center;
+  color: rgba(200, 210, 255, 0.9);
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(1.05rem, 4vmin, 3rem);
+  font-weight: 400;
+  text-shadow: 0 0 16px rgba(150, 165, 255, 0.4);
 }
