@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+ion-content {
+  --background: transparent;
+}
+
+
+.home-background {
+  background: linear-gradient(160deg, #0f0f45 0%, #1a1a6e 50%, #0d0d3a 100%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vh 4vw 4vh;
+  gap: 2vh;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70vmin;
+    height: 70vmin;
+    background: radial-gradient(circle, rgba(100, 120, 255, 0.18) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5vmin;
+  animation: fadeIn 0.6s ease-out both;
+  margin-top: -6vh;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(4rem, 15vmin, 8rem);
+  height: clamp(4rem, 15vmin, 8rem);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 60px rgba(100, 120, 255, 0.35),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.logo-img {
+  width: clamp(2.5rem, 11vmin, 6rem);
+  height: clamp(2.5rem, 11vmin, 6rem);
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(180, 190, 255, 0.6));
+}
+
+.home-title {
+  color: #ffffff;
+  font-size: clamp(1rem, 5vmin, 2.5rem);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 0 32px rgba(150, 165, 255, 0.7);
+  text-align: center;
+}
+
+.fp-card {
+  width: 100%;
+  flex: 1;
+  max-height: 48vh;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(100, 120, 255, 0.35);
+  border-radius: 1.5rem;
+  padding: 1.5vh 3vw;
+  box-shadow:
+    0 0 40px rgba(100, 120, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+
+.fp-title {
+  color: rgba(200, 210, 255, 0.9);
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(0.85rem, 3vmin, 1.5rem);
+  font-weight: 600;
+  margin: 0;
+  flex-shrink: 0;
+  text-shadow: 0 0 16px rgba(150, 165, 255, 0.5);
+  text-align: center;
+}
+
+.fp-value {
+  color: rgba(200, 210, 255, 0.9);
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(0.85rem, 3vmin, 1.5rem);
+  font-weight: 600;
+  margin: 0;
+  flex-shrink: 0;
+  text-shadow: 0 0 16px rgba(150, 165, 255, 0.5);
+  text-align: center;
+}
+
+.infos{
+  color: rgba(200, 210, 255, 0.9);
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(0.85rem, 3vmin, 1.2rem);
+  font-weight: 400;
+  margin: 0;
+  text-shadow: 0 0 16px rgba(150, 165, 255, 0.5);
+}
+
+.info-medicao{
+  margin: 0;
+  text-align: center;
+}
+
+.fp-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

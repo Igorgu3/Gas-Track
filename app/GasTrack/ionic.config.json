@@ -1,0 +1,7 @@
+{
+  "name": "GasTrack",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
